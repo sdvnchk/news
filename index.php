@@ -38,32 +38,24 @@
     </div>
   </nav>
 
-  <!-- Пост новости -->
+
   <div class="container mt-4">
     <div class="row">
       <div class="col-md-8">
         <h2>Пост новости</h2>
-        <form>
-          <div class="mb-3">
-            <label for="title" class="form-label">Заголовок новости</label>
-            <input type="text" class="form-control" id="title" name="title" required>
-          </div>
-          <div class="mb-3">
-            <label for="category" class="form-label">Категория новости</label>
-            <select class="form-select" id="category" name="category" required>
-              <option value="">Выберите категорию</option>
-              <option value="politics">Политика</option>
-              <option value="economy">Экономика</option>
-              <option value="culture">Культура</option>
-              <option value="science">Наука</option>
-              <option value="sports">Спорт</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="content" class="form-label">Содержание новости</label>
-            <textarea class="form-control" id="content" name="content" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Опубликовать</button>
+
+        // Подключение к базе данных
+        $conn = mysqli_connect("localhost", "username", "password", "database");
+
+        // Выборка постов
+        $result = mysqli_query($conn, "SELECT * FROM posts");
+
+        // Отображение постов
+        while ($row = mysqli_fetch_array($result)) {
+        echo "<h2>" . $row['title'] . "</h2>";
+        echo "<p>" . $row['content'] . "</p>";
+        }
+
         </form>
       </div>
 
